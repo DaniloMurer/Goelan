@@ -47,6 +47,12 @@ class RoundActivity : AppCompatActivity() {
         setContentView(R.layout.activity_round)
     }
 
+    override fun onStop() {
+        super.onStop()
+        unbindService(this.connection)
+        isServiceBound = false
+    }
+
     /**
      * Remove all elements from Layout
      */
