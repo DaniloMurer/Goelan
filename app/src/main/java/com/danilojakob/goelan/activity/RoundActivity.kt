@@ -9,6 +9,8 @@ import android.os.Bundle
 import android.os.IBinder
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.danilojakob.goelan.R
+import com.danilojakob.goelan.data.GameData
+import com.danilojakob.goelan.data.Player
 import com.danilojakob.goelan.service.GameService
 
 /**
