@@ -40,10 +40,8 @@ class ComponentFactory {
      */
     fun createButton(text: String, context: Context): Button {
         val newButton = Button(context)
-        newButton.setOnClickListener( {
-
-        });
         newButton.text = text
+        // TODO Implement deleting current LinearLayout
         return newButton
     }
 }

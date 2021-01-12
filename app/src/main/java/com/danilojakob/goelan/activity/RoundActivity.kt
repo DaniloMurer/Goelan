@@ -31,6 +31,7 @@ class RoundActivity : AppCompatActivity() {
             val binder = service as GameService.LocalBinder
             gameService = binder.getService()
             isServiceBound = true
+            gameService.changeRound()
         }
 
         override fun onServiceDisconnected(arg0: ComponentName) {
