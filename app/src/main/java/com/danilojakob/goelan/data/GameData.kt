@@ -5,6 +5,20 @@ object GameData {
     var rounds: Int = 0
     var currentPlayer: String = ""
 
+    private val wrongAnswerCaption = listOf("Wrong answer, seriously?",
+                                                    "Already that wasted?",
+                                                    "You're really a moron aren't you?",
+                                                    "Skipped primary school?",
+                                                    "It seems to be, that drinking affects your ability to think",
+                                                    "C'mon that was easy, are you a special education kid?")
+
+    private val correctAnswerCaption = listOf("Correct answer!", "Do we have a prodigy among us?",
+                                              "So you surely weren't the class clown huh",
+                                              "I'm starting to worry that you have no friends",
+                                              "Only 2% of humanity knows the answer to that question," +
+                                                      " I'm a computer I know what I'm talking about",
+                                              "You're truly special")
+
     /**
      * Sort the Player list based on the points and return it as a MutableList
      */
@@ -51,5 +65,21 @@ object GameData {
                 this.currentPlayer = newPlayer.name
             }
         }
+    }
+
+    /**
+     * Get a random caption for wrong answers
+     */
+    fun getWrongAnswerCaption(): String {
+        val randomNumber = (Math.random() * this.wrongAnswerCaption.size).toInt()
+        return wrongAnswerCaption[randomNumber]
+    }
+
+    /**
+     * Get a random caption for correct answers
+     */
+    fun getCorrectAnswerCaption(): String {
+        val randomNumber = (Math.random() * this.correctAnswerCaption.size).toInt()
+        return correctAnswerCaption[randomNumber]
     }
 }
