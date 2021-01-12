@@ -8,11 +8,13 @@ import android.os.IBinder
 import android.os.Looper
 import com.danilojakob.goelan.data.GameData
 import com.danilojakob.goelan.data.Round
+import com.danilojakob.goelan.util.views.AbstractView
 
 class GameService : Service() {
 
     private val binder = LocalBinder()
     private lateinit var apiService: ApiService
+    private lateinit var currentView: AbstractView
 
     inner class LocalBinder: Binder() {
         fun getService(): GameService = this@GameService
@@ -25,7 +27,7 @@ class GameService : Service() {
     /**
      * Change current round
      */
-    fun changeRound(): Round? {
+    fun changeRound(): AbstractView? {
         this.apiService = ApiService(applicationContext)
         // Return null object if there are no rounds left
         if (GameData.rounds == 0) return null
