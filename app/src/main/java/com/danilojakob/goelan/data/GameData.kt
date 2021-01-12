@@ -1,5 +1,6 @@
 package com.danilojakob.goelan.data
 
 object GameData {
-    var players: List<Player> = emptyList()
+    var players: MutableList<Player> = mutableListOf()
+    var rounds: Int = 0
 }

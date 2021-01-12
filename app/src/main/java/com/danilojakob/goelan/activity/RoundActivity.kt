@@ -7,11 +7,13 @@ import android.content.ServiceConnection
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
+import android.util.Log
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.danilojakob.goelan.R
 import com.danilojakob.goelan.data.GameData
 import com.danilojakob.goelan.data.Player
 import com.danilojakob.goelan.service.GameService
+import java.util.logging.Logger
 
 /**
  * Round Activity
@@ -38,7 +40,7 @@ class RoundActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        // Bind to LocalService
+        // Bind to GameService
         Intent(this, GameService::class.java).also { intent ->
             bindService(intent, connection, Context.BIND_AUTO_CREATE)
         }
@@ -47,6 +49,7 @@ class RoundActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_round)
+        Log.i("DEBUG", "GameData.players = " + GameData.players.size)
     }
 
     override fun onStop() {
