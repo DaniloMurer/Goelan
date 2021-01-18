@@ -60,6 +60,7 @@ class MainActivity : AppCompatActivity() {
             // Set the default amount of rounds
             GameData.rounds = AMOUNT_OF_ROUNDS
         }
+        GameData.currentPlayer = GameData.players.get(0).name
         // Create new intent for starting RoundActivity
         val roundActivityIntent = Intent(applicationContext, RoundActivity::class.java)
         // Start RoundActivity with the intent

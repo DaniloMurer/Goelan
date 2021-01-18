@@ -3,6 +3,7 @@ package com.danilojakob.goelan.data
 import com.danilojakob.goelan.util.event.ActuatorPressedEvent
 import com.danilojakob.goelan.util.event.ChangeRoundEvent
 import com.danilojakob.goelan.util.event.Observer
+import com.danilojakob.goelan.util.event.SensorDataEvent
 
 object GameData {
     var players: MutableList<Player> = mutableListOf()
@@ -10,6 +11,8 @@ object GameData {
     var currentPlayer: String = ""
     var changeRoundEvent: ChangeRoundEvent = ChangeRoundEvent()
     var actuatorPressedEvent: ActuatorPressedEvent = ActuatorPressedEvent()
+    var sensorDataEvent: SensorDataEvent = SensorDataEvent()
+    var orientationGameFinished: Boolean = false
 
     private val wrongAnswerCaption = listOf("Wrong answer, seriously?",
                                                     "Already that wasted?",

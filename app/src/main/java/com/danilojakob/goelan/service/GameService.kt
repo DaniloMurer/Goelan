@@ -56,7 +56,7 @@ class GameService() : Service() {
     /**
      * Get a random number between 1 and 2
      */
-    private fun getRandomNumber(): Int = 1//((Math.random() * 3) + 1).toInt()
+    private fun getRandomNumber(): Int = ((Math.random() * 3) + 1).toInt()
 
     fun setContext(context: Context) {
         this.context = context

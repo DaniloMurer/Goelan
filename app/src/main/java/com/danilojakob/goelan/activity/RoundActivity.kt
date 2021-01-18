@@ -4,13 +4,15 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
-import androidx.appcompat.app.AppCompatActivity
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
 import android.view.KeyEvent
-import android.view.View
-import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.danilojakob.goelan.R
 import com.danilojakob.goelan.data.GameData
@@ -23,10 +25,12 @@ import com.danilojakob.goelan.util.views.AbstractView
  *
  * Service binding from: https://developer.android.com/guide/components/bound-services#kotlin
  */
-class RoundActivity : AppCompatActivity(), Observer {
+class RoundActivity : AppCompatActivity(), Observer, SensorEventListener {
 
     private lateinit var gameService: GameService
     private var isServiceBound: Boolean = false
+    private var sensorManager: SensorManager? = null
+    private var sensor: Sensor? = null
 
     private val connection = object : ServiceConnection {
 
@@ -47,6 +51,9 @@ class RoundActivity : AppCompatActivity(), Observer {
         super.onStart()
         // Bind to GameService
         GameData.addObserver(this)
+        this.sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        this.sensor = this.sensorManager!!.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+        this.sensorManager!!.registerListener(this, this.sensor, SensorManager.SENSOR_DELAY_NORMAL)
         Intent(this, GameService::class.java).also { intent ->
             bindService(intent, connection, Context.BIND_AUTO_CREATE)
         }
@@ -66,6 +73,11 @@ class RoundActivity : AppCompatActivity(), Observer {
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
+            GameData.actuatorPressedEvent.notifyObservers()
+            return true
+        }
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+            GameData.actuatorPressedEvent.notifyObservers()
             return true
         }
         return false
@@ -85,5 +97,20 @@ class RoundActivity : AppCompatActivity(), Observer {
 
     override fun update() {
         this.setLayout(this.gameService.changeRound()!!)
+    }
+
+    override fun onSensorChanged(event: SensorEvent?) {
+        val x = event!!.values[0]
+        val y = event.values[1]
+        val z = event.values[2]
+        if (GameData.orientationGameFinished) {
+            this.sensor = null
+            this.sensorManager = null
+        }
+        GameData.sensorDataEvent.notifyObservers(x, y, z)
+    }
+
+    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+        // Noting happens here
     }
 }
