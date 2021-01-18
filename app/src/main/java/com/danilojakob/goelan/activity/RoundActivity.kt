@@ -96,18 +96,22 @@ class RoundActivity : AppCompatActivity(), Observer, SensorEventListener {
     }
 
     override fun update() {
-        this.setLayout(this.gameService.changeRound()!!)
+        val layout = this.gameService.changeRound()
+        if (layout == null) {
+            val intent = Intent(applicationContext, LeaderboardActivity::class.java)
+            startActivity(intent)
+        } else {
+            this.setLayout(layout!!)
+        }
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
         val x = event!!.values[0]
         val y = event.values[1]
         val z = event.values[2]
-        if (GameData.orientationGameFinished) {
-            this.sensor = null
-            this.sensorManager = null
+        if (!GameData.orientationGameFinished) {
+            GameData.sensorDataEvent.notifyObservers(x, y, z)
         }
-        GameData.sensorDataEvent.notifyObservers(x, y, z)
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {

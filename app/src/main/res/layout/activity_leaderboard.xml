@@ -6,4 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".activity.LeaderboardActivity">
 
+    <TextView
+        android:id="@+id/game_finished_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/game_is_finished"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.082" />
+
+    <LinearLayout
+        android:id="@+id/leaderboard_layout"
+        android:layout_width="413dp"
+        android:layout_height="295dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/game_finished_title"
+        app:layout_constraintVertical_bias="0.25"></LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

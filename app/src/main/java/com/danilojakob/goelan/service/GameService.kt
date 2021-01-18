@@ -4,13 +4,11 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.Binder
-import android.os.Handler
 import android.os.IBinder
-import android.os.Looper
 import android.util.Log
 import android.widget.LinearLayout
+import com.danilojakob.goelan.activity.LeaderboardActivity
 import com.danilojakob.goelan.data.GameData
-import com.danilojakob.goelan.data.Round
 import com.danilojakob.goelan.util.views.AbstractView
 import com.danilojakob.goelan.util.views.ActuatorGameView
 import com.danilojakob.goelan.util.views.OrientationGameView
@@ -35,7 +33,9 @@ class GameService() : Service() {
      */
     fun changeRound(): AbstractView? {
         // Return null object if there are no rounds left
-        if (GameData.rounds == 0) return null
+        if (GameData.rounds == 0) {
+            return null
+        }
         val randomNumber = getRandomNumber()
         if (randomNumber == 1) {
             // Decrement the rounds left after changing round

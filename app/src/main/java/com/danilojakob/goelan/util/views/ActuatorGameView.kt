@@ -30,9 +30,9 @@ class ActuatorGameView(private val context: Context, orientation: Int): Abstract
         val nextPlayerText = this.componentFactory.createTextView("${GameData.currentPlayer} it's your turn", this.context)
         val button = this.componentFactory.createButton("START", this.context)
         button.setOnClickListener(this::triggerColorChange)
+        this.addChildToLayout(nextPlayerText)
         this.addChildToLayout(button)
         this.textView = this.componentFactory.createTextView("When the current text is 'NOW' press the volume button!", this.context)
-        this.addChildToLayout(nextPlayerText)
         this.addChildToLayout(this.textView)
     }
 

@@ -18,6 +18,7 @@ class OrientationGameView(private val context: Context, orientation: Int): Abstr
     private lateinit var textView: TextView
 
     init {
+        GameData.orientationGameFinished = false
         GameData.sensorDataEvent.addObserver(this)
         buildLayout()
     }

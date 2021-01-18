@@ -4,4 +4,5 @@
     <string name="add_player">ADD PLAYER</string>
     <string name="amount_of_rounds">Amount of rounds</string>
     <string name="start_game">START GAME</string>
+    <string name="game_is_finished">Game is finished</string>
 </resources>
