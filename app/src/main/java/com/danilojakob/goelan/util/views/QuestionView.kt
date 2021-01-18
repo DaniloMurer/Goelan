@@ -23,9 +23,10 @@ class QuestionView(private val context: Context, orientation: Int) : AbstractVie
     override fun buildLayout() {
         this.question = apiService.getQuestion()
         this.correctAnswer = question.results.getJSONObject(0).getString("correct_answer")
+        val nextPlayerText = componentFactory.createTextView("${GameData.currentPlayer} it's your turn!", context)
+        this.addChildToLayout(nextPlayerText)
         this.addChildToLayout(componentFactory.createTextView(question.results.getJSONObject(0).getString("question"), this.context))
 
-        val nextPlayerText = componentFactory.createTextView("${GameData.currentPlayer} it's your turn!", context)
         val buttonTrue = componentFactory.createButton("TRUE", this.context)
         val buttonFalse = componentFactory.createButton("FALSE", this.context)
         val buttonLayout = componentFactory.createLinearLayout(LinearLayout.HORIZONTAL, this.context)
@@ -98,7 +99,6 @@ class QuestionView(private val context: Context, orientation: Int) : AbstractVie
         }
         buttonLayout.addView(buttonTrue)
         buttonLayout.addView(buttonFalse)
-        this.addChildToLayout(nextPlayerText)
         this.addChildToLayout(buttonLayout)
     }
 }

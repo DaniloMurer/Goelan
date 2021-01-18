@@ -31,6 +31,7 @@ class OrientationGameView(private val context: Context, orientation: Int): Abstr
         }
         this.textView = this.componentFactory.createTextView("After Starting you will see the sensor data, get everything to 0!", this.context)
         this.addChildToLayout(nextPlayerText)
+        this.addChildToLayout(this.componentFactory.createTextView("Try and hold your smartphone horizontally. X and Z value need to be 0", this.context))
         this.addChildToLayout(button)
         this.addChildToLayout(textView)
     }

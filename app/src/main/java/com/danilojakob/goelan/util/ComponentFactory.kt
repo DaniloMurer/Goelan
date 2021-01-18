@@ -24,6 +24,7 @@ class ComponentFactory {
     fun createTextView(text: String, context: Context): TextView {
         val newTextView = TextView(context)
         newTextView.text = text
+        newTextView.textSize = 30f
         return newTextView
     }
 
