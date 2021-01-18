@@ -16,11 +16,7 @@ import org.json.JSONObject
 class ApiService(context: Context) {
 
     private val API_URL = "https://opentdb.com/api.php?amount=1&type=boolean"
-    private lateinit var requestQueue: RequestQueue
-
-    init {
-        this.requestQueue = Volley.newRequestQueue(context)
-    }
+    private var requestQueue: RequestQueue = Volley.newRequestQueue(context)
 
     fun getQuestion(): Question {
         var question = Question(0, JSONArray())

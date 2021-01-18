@@ -32,7 +32,8 @@ class RoundActivity : AppCompatActivity(), Observer {
             val binder = service as GameService.LocalBinder
             gameService = binder.getService()
             isServiceBound = true
-            gameService.changeRound()
+            gameService.setContext(applicationContext)
+            update()
         }
 
         override fun onServiceDisconnected(arg0: ComponentName) {
@@ -43,10 +44,10 @@ class RoundActivity : AppCompatActivity(), Observer {
     override fun onStart() {
         super.onStart()
         // Bind to GameService
+        GameData.addObserver(this)
         Intent(this, GameService::class.java).also { intent ->
             bindService(intent, connection, Context.BIND_AUTO_CREATE)
         }
-        GameData.addObserver(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,7 +75,7 @@ class RoundActivity : AppCompatActivity(), Observer {
      * @param abstractView [AbstractView] view to set
      */
     private fun setLayout(abstractView: AbstractView) {
-        val layout = findViewById<LinearLayout>(R.id.main_layout)
+        val layout = findViewById<ConstraintLayout>(R.id.main_layout)
         layout.addView(abstractView.getLayout())
     }
 

@@ -1,11 +1,11 @@
 package com.danilojakob.goelan.util.event
 
-class Event {
+class ChangeRoundEvent {
 
     private var observers: MutableList<Observer> = mutableListOf()
 
     fun addObserver(observer: Observer) {
-        observers.toMutableList().add(observer)
+        observers.add(observer)
     }
 
     fun notifyObservers() {

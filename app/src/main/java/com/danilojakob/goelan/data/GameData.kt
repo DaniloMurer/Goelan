@@ -1,13 +1,13 @@
 package com.danilojakob.goelan.data
 
-import com.danilojakob.goelan.util.event.Event
+import com.danilojakob.goelan.util.event.ChangeRoundEvent
 import com.danilojakob.goelan.util.event.Observer
 
 object GameData {
     var players: MutableList<Player> = mutableListOf()
     var rounds: Int = 0
     var currentPlayer: String = ""
-    var changeRoundEvent: Event = Event()
+    var changeRoundEvent: ChangeRoundEvent = ChangeRoundEvent()
 
     private val wrongAnswerCaption = listOf("Wrong answer, seriously?",
                                                     "Already that wasted?",
