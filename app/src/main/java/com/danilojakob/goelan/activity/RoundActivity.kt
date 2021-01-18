@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
+import android.view.KeyEvent
+import android.view.View
 import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.danilojakob.goelan.R
@@ -62,12 +64,11 @@ class RoundActivity : AppCompatActivity(), Observer {
         isServiceBound = false
     }
 
-    /**
-     * Remove all elements from Layout
-     */
-    private fun clearLayout() {
-        val mainLayout = findViewById<ConstraintLayout>(R.id.main_layout)
-        mainLayout.removeAllViewsInLayout()
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
+            return true
+        }
+        return false
     }
 
     /**

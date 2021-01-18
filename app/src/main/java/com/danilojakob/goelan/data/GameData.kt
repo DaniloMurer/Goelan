@@ -1,5 +1,6 @@
 package com.danilojakob.goelan.data
 
+import com.danilojakob.goelan.util.event.ActuatorPressedEvent
 import com.danilojakob.goelan.util.event.ChangeRoundEvent
 import com.danilojakob.goelan.util.event.Observer
 
@@ -8,6 +9,7 @@ object GameData {
     var rounds: Int = 0
     var currentPlayer: String = ""
     var changeRoundEvent: ChangeRoundEvent = ChangeRoundEvent()
+    var actuatorPressedEvent: ActuatorPressedEvent = ActuatorPressedEvent()
 
     private val wrongAnswerCaption = listOf("Wrong answer, seriously?",
                                                     "Already that wasted?",
