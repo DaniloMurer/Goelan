@@ -1,9 +1,13 @@
 package com.danilojakob.goelan.data
 
+import com.danilojakob.goelan.util.event.Event
+import com.danilojakob.goelan.util.event.Observer
+
 object GameData {
     var players: MutableList<Player> = mutableListOf()
     var rounds: Int = 0
     var currentPlayer: String = ""
+    var changeRoundEvent: Event = Event()
 
     private val wrongAnswerCaption = listOf("Wrong answer, seriously?",
                                                     "Already that wasted?",
@@ -81,5 +85,19 @@ object GameData {
     fun getCorrectAnswerCaption(): String {
         val randomNumber = (Math.random() * this.correctAnswerCaption.size).toInt()
         return correctAnswerCaption[randomNumber]
+    }
+
+    /**
+     * Add observer to the changeRoundEvent
+     */
+    fun addObserver(observer: Observer) {
+        this.changeRoundEvent.addObserver(observer)
+    }
+
+    /**
+     * Fire the ChangeRound event
+     */
+    fun fireChangeRoundEvent() {
+        this.changeRoundEvent.notifyObservers()
     }
 }

@@ -1,14 +1,12 @@
 package com.danilojakob.goelan
 
 import android.content.Intent
-import android.graphics.drawable.GradientDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
-import android.widget.TextView
 import com.danilojakob.goelan.activity.RoundActivity
 import com.danilojakob.goelan.data.GameData
 import com.danilojakob.goelan.data.Player
