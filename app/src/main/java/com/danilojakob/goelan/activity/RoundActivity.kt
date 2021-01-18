@@ -76,6 +76,9 @@ class RoundActivity : AppCompatActivity(), Observer {
      */
     private fun setLayout(abstractView: AbstractView) {
         val layout = findViewById<ConstraintLayout>(R.id.main_layout)
+        // First remove all Views from layout
+        layout.removeAllViews()
+        // Add view to layout
         layout.addView(abstractView.getLayout())
     }
 
